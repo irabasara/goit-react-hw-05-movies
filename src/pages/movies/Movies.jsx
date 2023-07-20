@@ -1,6 +1,6 @@
-import fetchMovies from 'helpers/fetchMovies';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import fetchMovies from 'helpers/fetchMovies';
+// import React, { useEffect, useState } from 'react';
+// import { useParams } from 'react-router-dom';
 // import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
