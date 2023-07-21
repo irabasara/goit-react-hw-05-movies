@@ -1,87 +1,54 @@
-// import fetchMovies from 'helpers/fetchMovies';
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useSearchParams } from 'react-router-dom';
+import MoviesList from 'components/MoviesList/MoviesList';
+import SearchBar from 'components/SearchBar/SearchBar';
 import fetchMovies from 'helpers/fetchMovies';
+// import { Item, MovieList, Link } from 'pages/home/Home.styled';
 import { useEffect, useState } from 'react';
-import { BsSearch } from 'react-icons/bs';
-import { Link, useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  //   const [movies, setMovies] = useState([]);
-
-  //   useEffect(() => {
-  //     fetchMovies('movie/298618')
-  //       .then(({ results }) => {
-  //         setMovies(results);
-  //       })
-  //       .catch(error => console.log('error', error));
-  //   }, []);
-
-  //   const [searchParams] = useSearchParams();
-  //   console.log(' searchParams', searchParams);
-  const [search, setSearch] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search') ?? '';
   const [movies, setMovies] = useState([]);
-  const { id } = useParams();
 
-  const handlerChange = e => {
-    setSearch(e.target.value.toLowerCase());
-  };
-
-  const handlerSubmit = e => {
-    e.preventDefault();
-
-    if (search.trim() === '') {
-      alert('enter your search');
-      return;
-    }
-    // setSearch(search);
-    fetchMovies(`search/movie?query=${search}`)
-      .then(({ results }) => setMovies(results))
-      .catch(error => console.log('error', error));
-
-    console.log('search', search);
-    reset();
-  };
-
-  const reset = () => {
-    setSearch('');
+  const handlerFormSubmit = search => {
+    setSearchParams({ search });
   };
 
   useEffect(() => {
-    fetchMovies(`movie/${id}`)
-      .then(response => {
-        setMovies(response);
+    if (!search) return;
+    fetchMovies(`search/movie?query=${search}`)
+      .then(({ results }) => {
+        setMovies(results);
         return;
       })
       .catch(err => console.error(err));
-  }, [id]);
+  }, [search]);
 
   return (
-    <div>
-      <form onSubmit={handlerSubmit}>
-        <button type="submit">
-          <span>{<BsSearch size="18px" />}</span>
-        </button>
-
-        <input
-          type="text"
-          value={search}
-          placeholder="Search movies"
-          onChange={handlerChange}
-        />
-      </form>
-      <ul>
-        {movies.map(({ title, id }) => {
-          return (
-            <li key={id}>
-              <Link to="/movies/:title">{title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <SearchBar onSubmit={handlerFormSubmit} />
+      <MoviesList movies={movies} />
+    </>
   );
+  // const { id } = useParams();
+
+  // const handlerChange = e => {
+  //   setSearch(e.target.value.toLowerCase());
+  // };
+
+  // const handlerSubmit = e => {
+  //   e.preventDefault();
+
+  //   // if (search.trim() === '') {
+  //   //   alert('enter your search');
+  //   //   return;
+  //   // }
+  //   fetchMovies(`search/movie?query=${search}`)
+  //     .then(({ results }) => setMovies(results))
+  //     .catch(error => console.log('error', error));
+
+  //   e.currentTarget.reset();
+  // };
 };
 
 export default Movies;
