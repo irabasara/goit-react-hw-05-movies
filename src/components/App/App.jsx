@@ -3,16 +3,10 @@ import { Container, Header, Link } from './App.styled';
 import { Route, Routes } from 'react-router-dom';
 import Movies from 'pages/movies/Movies';
 import MoviesDetails from 'pages/movie-details/MoviesDetails';
-// import { useState } from 'react';
+import Review from 'components/Review/Review';
+import Cast from 'components/Cast/Cast';
 
 export const App = () => {
-  // const [search, setSearch] = useState('');
-
-  // const handlerFormSubmit = search => {
-  //   setSearch(search);
-  //   console.log('search', search);
-  // };
-
   return (
     <Container>
       <Header>
@@ -24,12 +18,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:id" element={<MoviesDetails />} />
-        {/* <Route path="/movies/:title" element={<MoviesDetails />} /> */}
-
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetails />} /> */}
+        <Route path="/movies/:id" element={<MoviesDetails />}>
+          <Route path="review" element={<Review />} />
+          <Route path="cast" element={<Cast />} />
+        </Route>
       </Routes>
     </Container>
   );

@@ -18,23 +18,21 @@ const SearchBar = ({ onSubmit }) => {
     }
 
     onSubmit(search);
-    e.currentTarget.reset();
+    // e.currentTarget.reset();
   };
 
   return (
-    <SearchBar>
-      <SearchForm onSubmit={handlerSubmit}>
-        <SearchFormButton type="submit">
-          <span>{<BsSearch size="18px" />}</span>
-        </SearchFormButton>
+    <SearchForm onSubmit={handlerSubmit}>
+      <SearchFormButton type="submit">
+        <span>{<BsSearch size="18px" />}</span>
+      </SearchFormButton>
 
-        <SearchInput
-          type="text"
-          placeholder="Search movies"
-          onChange={handlerChange}
-        />
-      </SearchForm>
-    </SearchBar>
+      <SearchInput
+        type="text"
+        placeholder="Search movies"
+        onChange={handlerChange}
+      />
+    </SearchForm>
   );
 };
 
