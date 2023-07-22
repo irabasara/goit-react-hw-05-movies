@@ -29,6 +29,7 @@ const SearchBar = ({ onSubmit }) => {
 
       <SearchInput
         type="text"
+        value={search}
         placeholder="Search movies"
         onChange={handlerChange}
       />

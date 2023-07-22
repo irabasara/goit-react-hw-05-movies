@@ -18,7 +18,7 @@ const Review = () => {
       .catch(err => console.error(err));
   }, [id, review]);
 
-  if (!review) return <div>ooops</div>;
+  if (!review) return <h3>...ooops, we don`t have reviews for this movie</h3>;
 
   return (
     <ul>
