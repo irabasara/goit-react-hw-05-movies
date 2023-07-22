@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fetchMovies from '../../helpers/fetchMovies';
 import MoviesList from 'components/MoviesList/MoviesList';
-// import { Item, Link, MovieList } from './Home.styled';
 
 function Home() {
   const [movies, setMovies] = useState([]);

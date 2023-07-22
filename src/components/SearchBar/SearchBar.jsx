@@ -18,7 +18,6 @@ const SearchBar = ({ onSubmit }) => {
     }
 
     onSubmit(search);
-    // e.currentTarget.reset();
   };
 
   return (

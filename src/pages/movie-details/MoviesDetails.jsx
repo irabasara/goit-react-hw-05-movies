@@ -3,7 +3,7 @@ import {
   AboutWrapper,
   MovieImg,
   MoviesDetailsWrapper,
-} from 'components/Movie/Movie.styled';
+} from './movie-details.styled';
 import fetchMovies from 'helpers/fetchMovies';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
@@ -15,7 +15,6 @@ const MoviesDetails = () => {
   const [movies, setMovies] = useState(null);
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/movies');
-  // console.log('backLinkHref', backLinkHref);
 
   useEffect(() => {
     fetchMovies(`movie/${id}`)
