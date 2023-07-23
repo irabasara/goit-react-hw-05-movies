@@ -9,6 +9,8 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const baseURL = 'https://image.tmdb.org/t/p/w500';
+const defaultImg =
+  'https://www.mub.eps.manchester.ac.uk/science-engineering/wp-content/themes/uom-theme/assets/images/default-thumbnail.jpg';
 
 const MoviesDetails = () => {
   const { id } = useParams();
@@ -32,10 +34,14 @@ const MoviesDetails = () => {
       <BackLink to={backLinkHref.current}>Back</BackLink>
 
       <MoviesDetailsWrapper>
-        <MovieImg
-          src={baseURL + movies.poster_path}
-          alt={movies.title}
-        ></MovieImg>
+        {movies.poster_path ? (
+          <MovieImg
+            src={baseURL + movies.poster_path}
+            alt={movies.title}
+          ></MovieImg>
+        ) : (
+          <MovieImg src={defaultImg} alt={movies.title} width={500}></MovieImg>
+        )}
         <div>
           <h2>{movies.title}</h2>
           <p>{movies.overview}</p>

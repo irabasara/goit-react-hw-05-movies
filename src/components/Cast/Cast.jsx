@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const baseURL = 'https://image.tmdb.org/t/p/w200';
+const defaultImg =
+  'https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png';
 
 const Cast = () => {
   const { id } = useParams();
@@ -25,7 +27,11 @@ const Cast = () => {
         return (
           <li key={id}>
             <h3>{character}</h3>
-            <img src={baseURL + profile_path} alt={name}></img>
+            {profile_path ? (
+              <img src={baseURL + profile_path} alt={name}></img>
+            ) : (
+              <img src={defaultImg} alt={name} width={200}></img>
+            )}
             <p>{name}</p>
           </li>
         );
